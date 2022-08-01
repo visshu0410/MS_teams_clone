@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>VideoAll</title>
+<link rel="stylesheet" href="/css/style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<script  src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://kit.fontawesome.com/c939d0e917.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+  const ROOM_ID="<%=roomId%>";
+  var username="<%=user_c.username%>";
+  const user_id="<%=user_c._id%>";
+</script>
+  </head>
+  <body onload=init()>
+    <div class="main">
+      
+      
+      <div class="main__left">
+        
+        <div class="main__controls">
+          <div class="main__controls__block">
+            <button class="main__controls__button main__wb__button"  onclick="openCloseWb()"><span>Whiteboard</span></button>
+            </div>
+        <div class="main__controls__block">
+          <div onclick="muteUnmute()" class="main__controls__button main__mute__button">
+            <i class="fas fa-microphone"></i>
+            <span>Mute</span>
+          </div>
+          <div onclick="playStop()" class="main__controls__button main__video__button">
+            <i class="fas fa-video"></i>
+            <span>Video</span>
+          </div>
+          <div onclick="leavemeet()" class="main__controls__button">
+             <span class="leave_meeting">Leave</span>
+          </div>
+        </div>
+
+
+      </div>
+        <div class="main__videos">
+          <div id="myForm" class="whiteboard">
+            <div class="wb__up">
+            <button class=" whiteboard__controls" id="clear_board" onclick="erase()">Clear Board</button>
+            <button class=" whiteboard__controls" id="btn" onclick="save()">Download</button>
+            
+            <div classs="whiteboard__colors" style="background-color: white;">
+              <div >Color</div>
+                <div class="colors">
+                  <div style="background:blue;" class="wb__color" id="blue" onclick="color(this)"></div>
+                  <div style="background:red;" class="wb__color" id="red" onclick="color(this)"></div>
+                  <div style="background:yellow;" class="wb__color" id="yellow" onclick="color(this)"></div>
+                  <div style="background:black;" class="wb__color" id="black" onclick="color(this)"></div>
+              </div>
+          </div>
+            <div class="whiteboard__controls" style="background:white;border:2px solid;" id="white" onclick="color(this)">Eraser</div>
+           </div>
+                    <canvas id="can" width="1200" height="550" class="drawarea" style="display: flex;background-color: white; top:10%;left:10%;border:2px solid;"></canvas>
+         </div>
+          <div id='video-grid'>
+          
+       
+     
+          </div>
+        </div>
+      </div>
+
+
+      <div class="main__right chat-pop" id="myform">
+          <div class="main__header">
+            <h6>Chat</h6>
+          </div>
+        <div class="main__chat__window">
+          <ul class="messages">
+
+          </ul>
+        </div>
+          <div class="main__message__container">
+            <input id="chat_message" type="text" placeholder="Type Message here">
+          </div>
+      </div>
+
+
+    </div>
+ 
+
+
+    <script src="/js/script.js"></script>
+    <script src="/js/script_board.js"></script>
+  </body>
+</html>

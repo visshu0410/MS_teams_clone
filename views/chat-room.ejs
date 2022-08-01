@@ -1,0 +1,188 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title><%=room.title%></title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+    <link rel="stylesheet" href="/css/styles_chat-room.css">  
+   <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Optional theme -->
+<script src="https://kit.fontawesome.com/c939d0e917.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+<link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link href="/css/styles_index.css" rel="stylesheet">
+<script>
+  var room_i="<%=room.id%>";
+</script>
+</head>
+
+<body id="main-side">
+<header id="header" class="d-flex align-items-center">
+  <div class="container d-flex align-items-center justify-content-between">
+
+    <h1 class="logo"><a href="/">VideoAll<span>.</span></a></h1>
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a class="nav-link scrollto" href="/">Home</a></li>
+     
+         
+        <li class="dropdown"><a href="#"><span><i class="bi bi-person-circle"></i>  </span> <span><%=me.username%></span> <i class="bi bi-chevron-down"></i></a>
+          <ul>
+            <li><a href="/logout">LogOut</a></li>
+          </ul>
+        </li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+
+  </div>
+</header>    
+
+
+<div style="margin-bottom: 10px !important; padding-top: 12px;" class="container ">
+<div class="row no-gutters">
+  <div class="col-md-4 border-right">
+  <div style="color: white; text-align: center;" class="settings-tray">
+          <%=me.username%>
+     <span class="settings-tray--right"></span>
+  </div>
+  
+          <div class="roomie">
+            <% me.rooms.forEach(function(room){ %>
+                <a href="/room/<%= room._id %>">
+                <div class="friend-drawer friend-drawer--onhover">
+                    <div class="text">
+                      <p > <strong><%= room.title %></strong></p>
+                    </div>
+                    <span class="time text-muted small"> <%= room.created.toDateString() %></span>
+                  </div>
+                  </a>
+                  <hr>
+            <% }) %>
+          </div>
+  </div>
+
+
+  
+
+<div class="col-md-8">
+  <div class="settings-tray">
+    <div class="friend-drawer no-gutters friend-drawer--grey">
+        <div class="text">
+          <h6 style="color: white;" class="text-muted"><%=room.created.toDateString()%></h6>
+          <p style="color: white;" ><strong><%=room.title%></strong></p>
+        </div>
+        <span class="settings-tray--right">
+                    <i onclick="toggleNav()" class="fas fa-user-friends attendees"></i>
+                    <i onclick="copy_link()" onmouseout="outFunc()" class="fas fa-user-plus invite" ></i>
+                  <span> <i onclick="startCall()"  class="fas fa-video"></i></span>
+        </span>
+    </div>
+  </div>
+  <div id="mySlidebar" style="margin-top: 80px !important; text-align: center; overflow: auto;" class="slidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <h4 style="color: white;">Participants</h4>
+    <% room.attendees.forEach(function(useri){ %>
+            <div class="row">
+                <div class="col-md-12" style="align-items: center; text-align: center;" >
+                    <strong style="color: white;"><%= useri.username %></strong>
+                    <span style="color: rgb(236, 236, 236);">(<%= useri.email %>)</span>
+                
+                </div>
+            </div>
+        <% }) %>
+  </div>
+  <div class="chat-panel">
+          <div class="past-chat">
+              <% room.chats.forEach(function(chat){ %>
+                 <% if(chat.author.id!=me.id){ %>
+                  <div class="row no-gutters" style="max-width:700px;">
+                      <div class="col-md-5">
+                        <div class="chat-bubble ">
+                          <%= chat.author.username %>
+                          <span><%= chat.created.toDateString() %></span> <strong style="color: black;"><%= chat.text %></strong>
+                        </div>
+                      </div>
+                    </div>
+                    <%}else{%>
+                    <div class="row no-gutters" style="max-width: 700px;">
+                      <div class="col-md-5 offset-md-9">
+                        <div class="chat-bubble chat-bubble--right ">
+                          <span><%= chat.created.toDateString() %></span>  <strong style="color: black;"><%= chat.text %></strong>
+                        </div>
+                      </div>
+                    </div>
+                    <%}%>
+              <% }) %>
+          </div>
+    <div class="row">
+    <div class="col-12">
+        <form action="/room/<%= room._id %>" method="POST">
+            <div class="chat-box-tray">
+                <input style="margin-left: 10px ;"  type="text" name="text" autocomplete="off" placeholder="Send message to the room" required>      
+                <button style="align-items: center; border: 0ch;" type="submit"><i class="fa fa-paper-plane" > </i></button>  
+            </div> 
+        </form>
+    </div>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+
+<!-- ======= Footer ======= -->
+<footer id="footer"  style="background-color: #f1f6fe; padding: 0px !important;">
+
+
+  <div class="container py-4" style="margin-top: auto; margin-bottom: auto; background-color:#f1f6fe; ">
+    <div class="copyright" style=" background-color:#f1f6fe; color: #444444;">
+      &copy; Copyright <strong><span>VideoAll</span></strong>. All Rights Reserved
+    </div>
+    
+  </div>
+</footer><!-- End Footer -->
+
+
+
+  <!-- Vendor JS Files -->
+  <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+  <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Template Main JS File -->
+  <script src="/js/script_chat-room.js"></script>
+  <script src="/js/script_index.js"></script>
+</body>
+</html>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

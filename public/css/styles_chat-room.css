@@ -1,0 +1,233 @@
+body {
+    background-color: #3498db;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+.container {
+    margin: 60px auto;
+    background: #fff;
+    padding: 0;
+    border-radius: 7px;
+}
+
+.settings-tray {
+    background: #106eea;
+    padding: 10px 15px;
+    border-radius: 7px;
+}
+.settings-tray .no-gutters {
+    padding: 0;
+}
+.settings-tray--right {
+    float: right;
+}
+.settings-tray--right i {
+    margin-top: 10px;
+    font-size: 25px;
+    color: white;
+    margin-left: 14px;
+    transition: 0.3s;
+}
+.settings-tray--right i:hover {
+    color: black;
+    cursor: pointer;
+}
+.search-box {
+    background: #106eea;
+    padding: 10px 13px;
+}
+.search-box .input-wrapper {
+    background: #fff;
+    border-radius: 40px;
+}
+.search-box .input-wrapper i {
+    color: #106eea;
+    margin-left: 7px;
+    vertical-align: middle;
+}
+input {
+    border: none;
+    border-radius: 30px;
+    width: 80%;
+}
+input::placeholder {
+    color: black;
+    font-weight: 300;
+    margin-left: 20px;
+}
+input:focus {
+    outline: none;
+}
+
+/*Styling for showing all the past rooms*/
+                .roomie{
+                    max-height: 535px;
+                    overflow-y: auto;
+                }
+                .friend-drawer {
+                    padding: 10px 15px;
+                    display: flex;
+                    vertical-align: baseline;
+                    background: #fff;
+                    transition: 0.3s ease;
+                }
+                .friend-drawer--grey {
+                    background: #106eea;
+                }
+                .friend-drawer .text {
+                    margin-left: 12px;
+                    width: 70%;
+                }
+
+                .friend-drawer .text p {
+                    margin: 0;
+                    text-decoration: none !important;
+                    color:black;
+                }
+                .friend-drawer .time {
+                    color: black;
+                }
+                .friend-drawer--onhover:hover {
+                    background: #74b9ff;
+                    cursor: pointer;
+                }
+                .friend-drawer--onhover:hover p, .friend-drawer--onhover:hover h6, .friend-drawer--onhover:hover .time {
+                    color: #fff !important;
+                }
+                hr {
+                    margin: 5px auto;
+                    width: 60%;
+                }
+
+
+/*Styling the chat box, past chats and the input form for the message*/
+                .past-chat{
+                    height: 440px;
+                    width: 100%;
+                    overflow-y: auto;
+                }
+                .chat-bubble {
+                    padding: 10px 14px;
+                    background: #eee;
+                    margin: 12px 10px; 
+                    border-radius: 9px;
+                    position: relative;
+                    animation: fadeIn 1s ease-in;
+                }
+                .chat-bubble:after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    width: 0;
+                    height: 0;
+                    border: 20px solid transparent;
+                    border-bottom: 0;
+                    margin-top: -10px;
+                }
+                .chat-bubble--left:after {
+                    left: 0;
+                    border-right-color: #eee;
+                    border-left: 0;
+                    margin-left: -20px;
+                    float: left;
+                }
+                .chat-bubble--right:after {
+                    right: 0;
+                    border-left-color: #add6ff;
+                    border-right: 0;
+                    margin-right: -20px;
+                    float: right;
+                }
+                @keyframes fadeIn {
+                    0% {
+                        opacity: 0;
+                }
+                    100% {
+                        opacity: 1;
+                }
+                }
+                .offset-md-9 .chat-bubble {
+                    background: #74b9ff;
+                    color: #fff;
+                }
+                .chat-box-tray {
+                    background: #eee;
+                    display: flex;
+                    align-items: baseline;
+                    padding: 10px 15px;
+                    align-items: center;
+                    margin-top: 19px;
+                    bottom: 0;
+                }
+                .chat-box-tray input {
+                    margin: 0 10px;
+                    padding: 6px 2px;
+                }
+                .chat-box-tray i {
+                    color: grey;
+                    font-size: 30px;
+                    vertical-align: middle;
+                }
+                .chat-box-tray i:last-of-type {
+                    margin-left: 25px;
+                }
+
+/*Styling for the slidebar*/
+                /* The slidebar menu */
+                .slidebar {
+                    height: 100%; /* 100% Full-height */
+                    width: 0 ; /* 0 width - change this with JavaScript */
+                    position: fixed; /* Stay in place */
+                    z-index: 1; /* Stay on top */
+                    top: 0;
+                    right: 0;
+                    background-color: #111; /* Black*/
+                    overflow-x: hidden; /* Disable horizontal scroll */
+                    padding-top: 60px; /* Place content 60px from the top */
+                    transition: 0.5s; /* 0.5 second transition effect to slide in the slidebar */
+                }
+                
+                /* The slidebar links */
+                .slidebar a {
+                    padding: 8px 8px 8px 32px;
+                    text-decoration: none;
+                    font-size: 25px;
+                    color: #818181;
+                    display: block;
+                    transition: 0.3s;
+                }
+                
+                /* When you mouse over the navigation links, change their color */
+                .slidebar a:hover {
+                    color: #f1f1f1;
+                }
+                
+                /* Position and style the close button (top right corner) */
+                .slidebar .closebtn {
+                    position: absolute;
+                    top: 0;
+                    right: 25px;
+                    font-size: 36px;
+                    margin-right: 50px;
+                }
+                
+                /* Style page content - use this if you want to push the page content to the right when you open the slide navigation */
+                #main {
+                    transition: margin-right .5s; /* If you want a transition effect */
+                    padding: 20px;
+                }
+                
+                /* On smaller screens, where height is less than 450px, change the style of the slidenav (less padding and a smaller font size) */
+                @media screen and (max-height: 450px) {
+                    .slidebar {padding-top: 15px;}
+                    .slidebar a {font-size: 18px;}
+                }
+
+                .col-me-red{
+                    background-color: red !important;
+                    color: Black;
+                    margin-right:0px !important;
+                }
+
+  
