@@ -11,7 +11,7 @@ Learn more at : https://bit.ly/3hIoaOC </br>
 </ul>
 </br>
 
-<strong>To run Videoall on your local machine</strong>,  (NOTE:You must have NodeJS installed on your computer
+<strong>To run Videoall on your local machine</strong>,  (NOTE : You must have NodeJS installed on your computer)
 <ol>  </br>
 <li>Clone or download the code from repository</li>
 
