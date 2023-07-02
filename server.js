@@ -19,7 +19,7 @@ const express               = require('express'),
       auth_routes           = require('./routes/auth_routes'),
       room_routes           = require('./routes/room_routes');
 
-mongoose.connect("mongodb+srv://Piyanshu:12348765@video-call-app.otsmf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",  {
+mongoose.connect("mongodb+srv://Vishu_0410:Vishal@2001@vishu0410.tqftuxi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",  {
       useNewUrlParser: true,
       useUnifiedTopology: true
       }).then(() => console.log('Connected to DB!'))
@@ -124,4 +124,3 @@ server.listen(process.env.PORT||3030,()=>{
   console.log("Server listening on port 3030");
 });
  
-
